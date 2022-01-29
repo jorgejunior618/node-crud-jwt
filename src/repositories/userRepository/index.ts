@@ -1,4 +1,4 @@
-import db from "../../dataBase/db";
+import db from "../../dataBase/db-config";
 import DbError from "../../models/Errors";
 
 class UserRepository {
