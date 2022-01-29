@@ -1,5 +1,5 @@
 import db from "../../dataBase/db-config";
-import DbError from "../../models/Errors";
+import DbError from "../../models/Errors/DbError";
 
 class UserRepository {
   async search(): Promise<User[]> {
@@ -69,7 +69,6 @@ class UserRepository {
     }
   }
 
-  
   async remove(id: string): Promise<void> {
     try {
       const query = `
@@ -79,6 +78,23 @@ class UserRepository {
       `;
       
       await db.query(query, [id]);
+    } catch (error) {
+      throw new DbError('Error na remoção de usuário', error);
+    }
+  }
+
+  async searchByLogin(name: string, password: string) : Promise<User> {
+    try {
+      const query = `
+        SELECT id, name
+        FROM application_user
+        WHERE name = $1
+        AND password = crypt($2, 'encriptacao')
+      `;
+      
+      const { rows } = await db.query(query, [name, password]);
+      const [ user ] = rows;
+      return user;
     } catch (error) {
       throw new DbError('Error na remoção de usuário', error);
     }

@@ -1,18 +1,17 @@
 import { NextFunction, Request, Response, Router } from "express";
 import userRepository from "../../repositories/userRepository";
 
-const URL: string = '/users'
-const defaultURL = (endpoint: string = '') => URL+`/${endpoint}`;
 const userRoute = Router();
 
-userRoute.get(defaultURL(), async (
+const USER_URL: string = '/users'
+
+userRoute.get(USER_URL, async (
   request: Request
   , response: Response
   , next: NextFunction
 ) => {
   try {
     const users: User[] = await userRepository.search();
-    console.log(users);
     
     response.status(200).send({ users });
   } catch (error) {
@@ -20,7 +19,7 @@ userRoute.get(defaultURL(), async (
   }
 });
 
-userRoute.get(defaultURL(':userID'), async (
+userRoute.get(USER_URL + '/:userID', async (
   request: Request<{ userID: string}>
   , response: Response
   , next: NextFunction
@@ -53,7 +52,7 @@ userRoute.post('/users', async (
   }
 });
 
-userRoute.put(defaultURL(':userID'), async (
+userRoute.put(USER_URL + '/:userID', async (
   request: Request<{ userID: string }>
   , response: Response
   , next: NextFunction
@@ -69,7 +68,7 @@ userRoute.put(defaultURL(':userID'), async (
   }
 });
 
-userRoute.delete(defaultURL(':userID'), async (
+userRoute.delete(USER_URL + '/:userID', async (
   request: Request<{ userID: string }>
   , response: Response
   , next: NextFunction
