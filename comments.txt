@@ -1,0 +1,1 @@
+command to ts-node-dev: "ts-node-dev -r tsconfig-pathes/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts"

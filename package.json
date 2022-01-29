@@ -1,0 +1,37 @@
+{
+  "name": "restful-jwt",
+  "version": "1.0.0",
+  "description": "Learning Project of a CRUD using JWT authentication",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "build": "npx tsc -p .",
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgejunior618/node-crud-jwt.git"
+  },
+  "keywords": [
+    "JWT",
+    "CRUD",
+    "RESTFUL"
+  ],
+  "author": "Jorge Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorgejunior618/node-crud-jwt/issues"
+  },
+  "homepage": "https://github.com/jorgejunior618/node-crud-jwt#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.12",
+    "@types/pg": "^8.6.4",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "pg": "^8.7.1"
+  }
+}
