@@ -4,7 +4,7 @@ import ForbidenError from "../../models/Errors/ForbidenError";
 import JWT from 'jsonwebtoken';
 import userRepository from "../../repositories/userRepository";
 
-async function bearerAuthentication(request: Request, response: Response, next: NextFunction) {
+async function jwtAuthenticationMidleware(request: Request, response: Response, next: NextFunction) {
   try {
     const authHeader = request.headers['authorization'];
     
@@ -42,5 +42,5 @@ async function bearerAuthentication(request: Request, response: Response, next: 
   }
 }
 
-export default bearerAuthentication;
+export default jwtAuthenticationMidleware;
 

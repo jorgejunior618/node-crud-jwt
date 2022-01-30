@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import AuthorizationType from "../../models/Authorization";
 import ForbidenError from "../../models/Errors/ForbidenError";
 
-async function basicAuth( request: Request, response: Response, next: NextFunction) {
+async function basicAuthMidleware( request: Request, response: Response, next: NextFunction) {
   try {
     const authHeader = request.headers['authorization'];
     if (!authHeader) {
@@ -34,5 +34,5 @@ async function basicAuth( request: Request, response: Response, next: NextFuncti
   }
 }
 
-export default basicAuth;
+export default basicAuthMidleware;
 

@@ -1,6 +1,6 @@
 import express, { json, urlencoded } from "express";
-import basicAuth from "./middlewares/basicAthentication";
-import bearerAuthentication from "./middlewares/bearerAuthentication";
+import basicAuthMidleware from "./middlewares/basicAthenticationMidleware";
+import jwtAuthenticationMidleware from "./middlewares/jwtAuthenticationMidleware";
 import errorHandler from "./middlewares/errorHandler";
 import authRoute from "./routes/authorizationRoute";
 import userRoute from "./routes/userRoute";

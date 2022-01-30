@@ -2,13 +2,14 @@ import { NextFunction, Request, Response, Router } from "express";
 import userRepository from "../../repositories/userRepository";
 import JWT from "jsonwebtoken";
 import ForbidenError from "../../models/Errors/ForbidenError";
-import basicAuth from "../../middlewares/basicAthentication";
+import basicAuthMidleware from "../../middlewares/basicAthenticationMidleware";
+import jwtAuthenticationMidleware from "../../middlewares/jwtAuthenticationMidleware";
 
 const authRoute = Router();
 
 const AUTH_URL = '/token';
 
-authRoute.post(AUTH_URL, basicAuth, async (
+authRoute.post(AUTH_URL, basicAuthMidleware, async (
   request: Request
   , response: Response
   , next: NextFunction
@@ -38,6 +39,14 @@ authRoute.post(AUTH_URL, basicAuth, async (
     
     next(error)
   }
+});
+
+authRoute.post(AUTH_URL+'/validate', jwtAuthenticationMidleware, async (
+  request: Request
+  , response: Response
+  , next: NextFunction
+) => {
+  response.sendStatus(200);
 });
 
 export default authRoute;

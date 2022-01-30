@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response, Router } from "express";
-import bearerAuthentication from "../../middlewares/bearerAuthentication";
+import jwtAuthenticationMidleware from "../../middlewares/jwtAuthenticationMidleware";
 import userRepository from "../../repositories/userRepository";
 
 const userRoute = Router();
 
 const USER_URL: string = '/users'
 
-userRoute.get(USER_URL, bearerAuthentication, async (
+userRoute.get(USER_URL, jwtAuthenticationMidleware, async (
   request: Request
   , response: Response
   , next: NextFunction
