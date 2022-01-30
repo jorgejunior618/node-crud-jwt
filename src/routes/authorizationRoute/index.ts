@@ -30,7 +30,7 @@ authRoute.post(AUTH_URL, basicAuth, async (
       subject: user.id
     };
 
-    const jwt = JWT.sign(jwtPayload, 'secrte_jwt_key', jwtOpt);
+    const jwt = JWT.sign(jwtPayload, 'secret_jwt_key', jwtOpt);
 
     response.status(200).send({token: jwt});
   } catch (error) {

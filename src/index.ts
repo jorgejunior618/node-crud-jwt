@@ -1,5 +1,6 @@
 import express, { json, urlencoded } from "express";
 import basicAuth from "./middlewares/basicAthentication";
+import bearerAuthentication from "./middlewares/bearerAuthentication";
 import errorHandler from "./middlewares/errorHandler";
 import authRoute from "./routes/authorizationRoute";
 import userRoute from "./routes/userRoute";
@@ -10,7 +11,6 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 app.use(userRoute);
-app.use(basicAuth)
 app.use(authRoute);
 app.use(errorHandler);
 

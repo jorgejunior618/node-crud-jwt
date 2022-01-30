@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import AuthorizationType from "../../models/Authorization";
 import ForbidenError from "../../models/Errors/ForbidenError";
 
-async function basicAuth ( request: Request, response: Response, next: NextFunction) {
+async function basicAuth( request: Request, response: Response, next: NextFunction) {
   try {
     const authHeader = request.headers['authorization'];
     if (!authHeader) {
@@ -11,6 +11,7 @@ async function basicAuth ( request: Request, response: Response, next: NextFunct
     
     const [ authType, authToken ] = authHeader.split(' ');
     
+    
     if (authType != AuthorizationType.BASIC || !authToken) {
       throw new ForbidenError("Autenticação inválida");
     }
@@ -18,7 +19,6 @@ async function basicAuth ( request: Request, response: Response, next: NextFunct
     const tokenContent = Buffer.from(authToken, 'base64').toString('utf-8');
     
     const [ name, password ] = tokenContent.split(':');
-    console.log({name, password});
     
     if (!name || !password) {
       throw new ForbidenError("Faltando credenciais");
@@ -28,6 +28,8 @@ async function basicAuth ( request: Request, response: Response, next: NextFunct
 
     next();
   } catch (error) {
+    console.log(error);
+    
     next(error);
   }
 }
